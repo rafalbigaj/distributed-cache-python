@@ -74,11 +74,98 @@ Pod wskazanym adresem, aby uruchomić test należy podać następujące parametr
 - "Hatch rate" - ilość użytkowników uruchamianych na sekundę - np. `10`
 - "Host" - adres właściwej aplikacji - np. `http://0.0.0.0:8080`
 
-### Dostarczania do IBM Cloud
+### Dostarczanie do IBM Cloud
 
-TBD
+W celu dostarczenia Twojej aplikacji do IBM Cloud wymagana jest rejestracja.
+Dla studentów i pracowników naukowych oferujemy specjalne kody promocyjne, które pozwalają na pracę z większą ilością
+serwisów w chmurze.
+
+Procedura rejestracji:
+https://ibm.box.com/shared/static/nw3ednr2c43gzaw4gj1yl1ak0jgv1qkg.pptx
+
+Posiadanie konta umożliwia zainstalowanie narzędzi CLI potrzebnych do dostarczenia aplikacji:
+https://cloud.ibm.com/docs/cli?topic=cloud-cli-getting-started
+
+Oraz rozszerzenia `cloud foundry`:
+```shell script
+ibmcloud cf install
+```
+
+Następny krok to logowanie do IBM Cloud przy użyciu komendy:
+```shell script
+ibmcloud login -r eu-de --sso
+```
+
+Proszę zwróć uwagę na region: `eu-de` (Frankfurt). Jego wybór jest potrzebny, ponieważ udostępniona baza etcd
+znajduje się właśnie w tym regionie.
+
+Następnie należy wybrać dalsze parametry, gdzie aplikacja będzie umieszczona:
+
+```shell script
+ibmcloud target --cf
+```
+
+Poprawność logowania możesz sprawdzić przy pomocy komendy:
+
+```shell script
+ibmcloud target
+
+                      
+API endpoint:      https://cloud.ibm.com   
+Region:            eu-de   
+User:              rafal.bigaj@pl.ibm.com   
+Account:           Rafal Bigaj's Account (a34b4e9ea7ab66770e048caf83277971) <-> 1729119   
+Resource group:    No resource group targeted, use 'ibmcloud target -g RESOURCE_GROUP'   
+CF API endpoint:   https://api.eu-de.cf.cloud.ibm.com (API version: 2.147.0)   
+Org:               rafal.bigaj@pl.ibm.com   
+Space:             test
+```
+
+Przed dostarczenie aplikacji należy jeszcze uzupełnić plik `manifest.yml` w sekcji `env` ustalając wartość zmiennej: `USER_KEY_PREFIX`,
+która będzie wykorzystywana jako prefiks wszystkich kluczy. Wartość ta powinna być unikalna dla każdego studenta.
+
+Ostatecznie jesteś gotowy, żeby uruchomić komendę:
+
+```shell script
+ibmcloud cf push
+```
+
+Poprawność doostarczenia można zweryfikować komendą:
+
+```shell script
+ibmcloud cf apps
+
+Invoking 'cf apps'...
+
+Getting apps in org rafal.bigaj@pl.ibm.com / space test as rafal.bigaj@pl.ibm.com...
+OK
+
+name                            requested state   instances   memory   disk   urls
+distributed-cache               started           4/4         256M     1G     distributed-cache-friendly-gnu.eu-de.mybluemix.net
+locust                          started           1/1         256M     1G     locust-timely-swan.eu-de.mybluemix.net
+```
+
+Powyższy przykład pokazuje dwie aplikacje `distributed-cache` oraz `locust`. Pierwsza z nich to właściwa aplikacja
+z implementacją API do rozproszonej pamięci podręcznej, druga to aplikacja do uruchomienia testów.
 
 ### Testowanie w IBM Cloud
 
-TBD
+Aplikacja testująca po dostarczeniu do IBM Cloud jest dostępna pod adresem wskazanym na liście aplikacji.
+W przykłądzie z poprzedniej sekcji jest to `locust-timely-swan.eu-de.mybluemix.net`.
 
+Pod wskazanym adresem, aby uruchomić test należy podać następujące parametry:
+
+- "Number of total users to simulate" - ilość symulowanych użytkowników - np. `40`
+- "Hatch rate" - ilość użytkowników uruchamianych na sekundę - np. `10`
+- "Host" - adres właściwej aplikacji - np. `https://distributed-cache-friendly-gnu.eu-de.mybluemix.net`
+
+Oczekiwany rezultat wykonania testu powinnien wyglądać podobnie jak w tabeli poniżej:
+
+
+| Type   | Name                                                     | # requests | # failures | Median response time | Average response time | Min response time | Max response time | Average Content Size | Requests/s |
+| -----  | -----                                                    | -----      | -----      | -----                | -----                 | -----             | -----             | -----                | -----      |
+| DELETE | /config/performance_tests/<key>                          | 74         | 0          | 64                   | 424                   | 28                | 3470              | 0                    | 1.06       |
+| PUT    | /config/performance_tests/<key>                          | 108        | 0          | 79                   | 371                   | 27                | 3151              | 49                   | 1.55       |
+| GET    | /config/performance_tests/<key>?use_cache=false     807  | 0          | 57         | 253                  | 25                    | 3957              | 49                | 11.58                |            |
+| GET    | /config/performance_tests/<key>?use_cache=true      857  | 0          | 42         | 158                  | 18                    | 2031              | 49                | 12.30                |            |
+| None   | Aggregated                                          1846 | 0          | 51         | 223                  | 18                    | 3957              | 47                | 26.49                |            |

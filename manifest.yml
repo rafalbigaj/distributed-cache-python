@@ -5,8 +5,7 @@ applications:
    instances: 4
    command: python app.py
    env:
-     USER_KEY_PREFIX: rb-1234
-     FLASK_ENV: development
+     USER_KEY_PREFIX: <put-your-prefix-here>
  - name: locust
    random-route: true
    memory: 256M
