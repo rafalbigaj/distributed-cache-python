@@ -161,11 +161,11 @@ Pod wskazanym adresem, aby uruchomić test należy podać następujące parametr
 
 Oczekiwany rezultat wykonania testu powinnien wyglądać podobnie jak w tabeli poniżej:
 
-
-| Type   | Name                                                     | # requests | # failures | Median response time | Average response time | Min response time | Max response time | Average Content Size | Requests/s |
-| -----  | -----                                                    | -----      | -----      | -----                | -----                 | -----             | -----             | -----                | -----      |
-| DELETE | /config/performance_tests/<key>                          | 74         | 0          | 64                   | 424                   | 28                | 3470              | 0                    | 1.06       |
-| PUT    | /config/performance_tests/<key>                          | 108        | 0          | 79                   | 371                   | 27                | 3151              | 49                   | 1.55       |
-| GET    | /config/performance_tests/<key>?use_cache=false     807  | 0          | 57         | 253                  | 25                    | 3957              | 49                | 11.58                |            |
-| GET    | /config/performance_tests/<key>?use_cache=true      857  | 0          | 42         | 158                  | 18                    | 2031              | 49                | 12.30                |            |
-| None   | Aggregated                                          1846 | 0          | 51         | 223                  | 18                    | 3957              | 47                | 26.49                |            |
+| Type   | Name                                            | # requests | # failures | Median response time | Average response time | Min response time | Max response time |
+| -----  | -----                                           | -----      | -----      | -----                | -----                 | -----             | -----             |
+|        |                                                 |            |            |                      |                       |                   |                   |
+| DELETE | /config/performance_tests/<key>                 | 40         | 0          | 51                   | 55                    | 30                | 134               |
+| PUT    | /config/performance_tests/<key>                 | 80         | 0          | 73                   | 88                    | 34                | 484               |
+| GET    | /config/performance_tests/<key>?use_cache=false | 612        | 0          | 49                   | 64                    | 27                | 691               |
+| GET    | /config/performance_tests/<key>?use_cache=true  | 625        | 0          | 38                   | 47                    | 19                | 424               |
+|        | Aggregated                                      | 1357       | 0          | 45                   | 57                    | 19                | 691               |
