@@ -148,6 +148,9 @@ locust                          started           1/1         256M     1G     lo
 Powyższy przykład pokazuje dwie aplikacje `distributed-cache` oraz `locust`. Pierwsza z nich to właściwa aplikacja
 z implementacją API do rozproszonej pamięci podręcznej, druga to aplikacja do uruchomienia testów.
 
+Informacje na temat uruchomionych aplikacji są także dostępne pod adresem:
+https://cloud.ibm.com/cloudfoundry/public
+
 ### Testowanie w IBM Cloud
 
 Aplikacja testująca po dostarczeniu do IBM Cloud jest dostępna pod adresem wskazanym na liście aplikacji.
