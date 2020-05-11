@@ -28,7 +28,7 @@ Zawartość repozytorium:
 
 #### `etcd.config.json`
 
-Dane dostępowe do bazy etcd udostępnione na kanale slack:
+Dane dostępowe do bazy etcd udostępnione na kanale slack: https://join.slack.com/t/ibm-agh-labs/shared_invite/zt-e8xfjgtd-8IDWmn912qPOflbM1yk6~Q
 należy umieścić w pliku: `instance/etcd.config.json`. 
 Ten krok jest wymagany w celu poprawnej konfiguracji aplikacji lokalnej i przed dostarczeniem do chmury. 
 
@@ -48,7 +48,7 @@ Ostatnia metoda `get` powinna działać w dwóch wariantach:
 
 Wymagania:
 
-- aplikację moźna uruchomić w dowolnej liczbie kopii (maksymalnie 64)
+- aplikację można uruchomić w dowolnej liczbie kopii (maksymalnie 64)
 - każda instancja aplikacji zapewnia dostęp do tych samych danych
 - wartość klucza wpisana w jednej instancji może być odczytana z innej
 - procesy aplikacji przechowują wartości kluczy w pamięci operacyjnej
@@ -168,7 +168,7 @@ Pod wskazanym adresem, aby uruchomić test należy podać następujące parametr
 - "Hatch rate" - ilość użytkowników uruchamianych na sekundę - np. `10`
 - "Host" - adres właściwej aplikacji - np. `https://distributed-cache-friendly-gnu.eu-de.mybluemix.net`
 
-Oczekiwany rezultat wykonania testu powinnien wyglądać podobnie jak w tabeli poniżej:
+Oczekiwany rezultat wykonania testu powinien wyglądać podobnie jak w tabeli poniżej:
 
 | Type   | Name                                            | # requests | # failures | Median response time | Average response time | Min response time | Max response time |
 | -----  | -----                                           | -----      | -----      | -----                | -----                 | -----             | -----             |
@@ -300,6 +300,7 @@ W raporcie opisującym wykonanie zadania proszę o umieszczenie następujących 
   "Number of total users to simulate" - 40 oraz "Hatch rate" - 10 
 - wyniki testu trwającego 3 minuty i wykonanego na IBM Cloud z wykorzystaniem aplikacji `locust` dla parametrów 
   "Number of total users to simulate" - 40 oraz "Hatch rate" - 10
+- wyjaśnienie rozbieżności w wynikach uruchomionych lokalnie oraz w chmurze
 - odpowiedź z komendy `ibmcloud target` uruchomionej na Państwa koncie
 - odpowiedź z komendy `ibmcloud cf app distributed-cache` uruchomionej dla Państwa aplikacji
 - odpowiedź z komendy `ibmcloud cf logs distributed-cache --recent | head -n 20` uruchomionej dla Państwa aplikacji
