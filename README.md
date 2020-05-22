@@ -129,6 +129,19 @@ Org:               rafal.bigaj@pl.ibm.com
 Space:             test
 ```
 
+Jeśli w regionie `eu-de` w organizacji Cloud Foundry ("rafal.bigaj@pl.ibm.com" w przykładzie powyżej) 
+nie ma żadnego `space` należy wykonać dodatkowo komendę:
+
+```shell script
+ibmcloud cf create-space <nazwa-space> -o <nazwa-organizacji>
+```
+
+oraz powtórzyć wywołanie komendy:
+
+```shell script
+ibmcloud target --cf
+```
+
 Przed dostarczenie aplikacji należy jeszcze uzupełnić plik `manifest.yml` w sekcji `env` ustalając wartość zmiennej: `USER_KEY_PREFIX`,
 która będzie wykorzystywana jako prefiks wszystkich kluczy. Wartość ta powinna być unikalna dla każdego studenta.
 
