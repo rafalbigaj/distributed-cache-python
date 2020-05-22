@@ -59,8 +59,10 @@ Wymagania:
 W celu uruchomienia aplikacji na własnej maszynie należy wpisać komendę:
 
 ```shell script
-python app.py
+USER_KEY_PREFIX=<key-prefix> python app.py
 ```
+
+Zmienna systemowa `USER_KEY_PREFIX` powinna zawierać dowolny prefix, który pozwoli odseparować aplikacje różnych osób, np. "/student-1234/".
 
 Aplikacja po uruchomieniu jest dostępna pod adresem: `http://0.0.0.0:8080`.
 
