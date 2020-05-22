@@ -13,7 +13,7 @@ interfejs [`REST`](https://en.wikipedia.org/wiki/Representational_state_transfer
 Aby rozpocząć pracę z kodem musisz mieć środowisko python 3.6 z zainstalowanymi zależnościami przy pomocy komendy:
 
 ```shell script
-pip install -r requirements.txt
+pip install -r local_requirements.txt
 ```
 
 Zawartość repozytorium:
@@ -24,7 +24,8 @@ Zawartość repozytorium:
 - `etcd_client.py` - klient etcd oparty na [`python-etcd3`](https://python-etcd3.readthedocs.io/en/latest/)
 - `distributed_cache.py` - szkielet kodu rozproszonej pamięci podręcznej **do uzupełnienia**
 - `locustfile.py` - testy wykonane z wykorzystanie narzędzia [`locust`](https://locust.io/)
-- `requirements.txt` - plik z wymaganymi pakietami
+- `local_requirements.txt` - plik z wymaganymi pakietami do uruchomienia aplikacji głównej i testowej lokalnie
+- `requirements.txt` - plik z wymaganymi pakietami do uruchomienia tylko aplikacji głównej (np. w IBM Cloud)
 
 #### `etcd.config.json`
 
