@@ -152,6 +152,19 @@ Ostatecznie jesteś gotowy, żeby uruchomić komendę:
 ibmcloud cf push
 ```
 
+Jeżeli widoczna jest informacja `Assigning role SpaceManager ... FAILED` należy wejść pod link https://cloud.ibm.com/account/cloud-foundry, wybrać wcześniej utworzoną organizacje, nacisnąć przycisk Add a Space, wybrać Region Germany oraz nazwę space. Następnie ponownie odpalić 
+
+```shell script
+ibmcloud target --cf
+```
+
+wybrać numer odpowiadający podanej przed chwilą nazwy space i ponownie wywołać komendę 
+
+```shell script
+ibmcloud cf push
+```
+
+
 Poprawność doostarczenia można zweryfikować komendą:
 
 ```shell script
